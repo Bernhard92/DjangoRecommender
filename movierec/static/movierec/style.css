@@ -15,7 +15,7 @@ body {
 
 .container {
 
-width: 1200;
+/*width: 1200;*/
 
 /* height: 95%; */
 
@@ -36,9 +36,10 @@ h1 {
    /* display: inline; */
 }
 
-.image:hover {
+#carousel .image:hover {
    -webkit-transform: scale(1.35);
    transform: scale(1.35);
+   transform: rotate(90deg);
    opacity: .9;
 }
 
@@ -46,7 +47,9 @@ h1 {
    -webkit-transition: all 0.7s ease;
    transition: all 0.7s ease;
    /* padding: 15px; */
-   margin:auto;
+   margin:auto;	
+   width: 100%;
+   height: auto;
 }
 
 /*#example1:hover {
@@ -71,7 +74,7 @@ top: 15px;
    
 width: 280px;
    
-/* opacity: 0; */
+ opacity: 0; 
    
 -webkit-transition: opacity 500ms;
    
@@ -88,32 +91,7 @@ span.text-content span {
    vertical-align: middle;
 }
 
-#carousel {
-
-width: 21em;
-
-height: 100em;
-
-overflow-y: auto;
-
-overflow-x: hidden;
-
-transform: rotate(-90deg) translateY(45em);
-
-/* transform-origin: right top; */
-
-/* margin: 0; */
-
-/* padding: 0; */
-
-text-align: center;
-
-white-space: nowrap;
-
-margin-top: -39em;
-
-margin-bottom: -41em;
-}
+#carousel {width: 21em;height: 70em;overflow-y: auto;overflow-x: hidden;transform: rotate(-90deg) translateY(28em);/* transform-origin: right top; *//* margin: 0; *//* padding: 0; */text-align: center;white-space: nowrap;margin-top: -24em;margin-bottom: -24em;}
 
 #carousel div.image {
    height: 280px;
@@ -166,7 +144,7 @@ a:link {
 }
 header{
 
-	width:100%;
+	/*width:100%;*/
 	padding-left:7%;
 	background:#222;
 	color:red;
@@ -178,6 +156,11 @@ header{
 }
 p{
 	margin:0;
+}
+
+
+#row{
+	margin: 1em;
 }
 
 /* width */
