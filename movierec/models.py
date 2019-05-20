@@ -4,9 +4,6 @@ import datetime
 
 # Create your models here.
 class Movie(models.Model):
-	def __str__(self):
-		return self.title
-
 	movie_id = models.IntegerField()
 	title = models.CharField(max_length=300)
 
@@ -19,6 +16,7 @@ class User(models.Model):
 	gender = models.CharField(max_length=1)
 	age = models.IntegerField()
 	occupation = models.CharField(max_length=300)
+	zip_code = models.CharField(max_length=100)
 
 class Rating(models.Model):
 	user_id = models.ForeignKey(User, on_delete=models.CASCADE)

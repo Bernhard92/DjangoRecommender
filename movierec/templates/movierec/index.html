@@ -1,11 +1,30 @@
+{% csrf_token %}
 {% load static %}
+
 
 <link rel="stylesheet" type="text/css" href="{% static 'movierec/style.css' %}">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
 <header>
-<p>NETFLIX</p>
+<a href="/">NETFLIX</a>
 </header>
+
+<div class="wrap">
+
+   <h3 class="input-advice">Find movies similiar to your favourite!</h3>
+   <div class="search">
+      <form id="searchForm" method="get">
+         <input name="movie_title" type="text" class="searchTerm" id="searchBar" placeholder="ex. Star Wars">
+         <button type="submit" class="searchButton" value="Submit">
+           <i class="fa fa-search"></i>
+         </button>
+      </form>
+   </div>   
+</div>
+
+<div class="searchItem">
+   <h1>Showing results for the movie: "{{movie_title}}"</h1>
+</div>
 
 <div class="container">
 {% for list in recommendation_lists %}

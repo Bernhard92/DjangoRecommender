@@ -6,7 +6,7 @@ app_name = 'movierec'
 urlpatterns = [
 	# ex: /movierec/
 	#path('', views.IndexView.as_view(), name='index'),
-	path('', views.index, name='index')
+	path('', views.index, name='index'),	
 
 	# ex: /movierec/5/
 	#path('<int:pk>/', views.DetailView.as_view(), name='detail'),
