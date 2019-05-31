@@ -10,6 +10,10 @@ print('starting to load poster data for recommender')
 image_data_feats = np.load(os.path.join(os.getcwd(),'movierec/data/image_features_X.npy'))
 image_data_y = np.load(os.path.join(os.getcwd(),'movierec/data/image_ids_y.npy'))
 
+print('initialize poster recommender')
 poster_recommender = PosterKNN()
 poster_recommender.train(image_data_feats,image_data_y)
-print('initialized poster recommender')
+
+print('initialize movie table')
+data_path = os.path.join(os.getcwd(), 'movierec/data/the-movies-dataset/')
+movies = pd.read_csv(os.path.join(data_path, 'movies_preprocessed.csv'))
