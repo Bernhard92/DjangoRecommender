@@ -19,7 +19,7 @@
            <i class="fa fa-search"></i>
          </button>
       </form>
-   </div>   
+   </div>
 </div>
 
 <div class="searchItem">
@@ -30,13 +30,13 @@
 {% for list in recommendation_lists %}
 
       <div id="row">
-         <h1 class="listTitle">Algorithm {{ forloop.counter }}</h1>    
+         <h1 class="listTitle">Algorithm {{ forloop.counter }}</h1>
          <div id="carousel">
 
             {% for movie in list %}
             <div class="image">
-               <a href="#">
-                  <img id="box1" src="http://placehold.it/280x350" width="280" height="350" />
+               <a href="?movie_title={{ movie.0 }}">
+                  <img id="box1" src="http://image.tmdb.org/t/p/w342{{ movie.3 }}" width="280" height="350" />
                   <span class="text-content"><span>{{ movie }}<br><br><i class="fa fa-4x  fa-play-circle-o"></i><br><br><i class="fa fa-chevron-down" aria-hidden="true"></i></span></span>
                </a>
             </div>
