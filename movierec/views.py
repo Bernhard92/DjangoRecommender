@@ -1,4 +1,5 @@
 import os
+import pandas as pd
 from django.shortcuts import render
 from django.views import generic
 from django.template import loader
@@ -13,9 +14,15 @@ def index(request):
 	user_movie_title = request.GET.get('movie_title','Toy Story')
 	# find movieId of movie with title user_movie_title
 	user_movie = movies[movies['title']==user_movie_title]
-	user_movie_id = 862
-	if user_movie.size != 0:
-		user_movie_id = user_movie['id']
+	# looking up for title might return multiple result or no result
+	if isinstance(user_movie, pd.DataFrame):
+		if user_movie.empty:
+			user_movie = movies[movies['title']=='Toy Story']
+		else:
+			user_movie = user_movie.iloc[0]
+
+	user_movie_id = user_movie['id']
+	user_movie_poster = 'http://image.tmdb.org/t/p/w342{}'.format(user_movie['poster_path'])
 
 	similar = poster_recommender.recommend(float(user_movie_id),10)
 	similar_rows = movies.loc[movies['id'].isin(similar)]
@@ -35,6 +42,7 @@ def index(request):
 
 	context = {
 		'recommendation_lists': recommendation_lists,
-		'movie_title': user_movie_title
+		'movie_title': user_movie_title,
+		'poster_path': user_movie_poster
 	}
 	return render(request, 'movierec/index.html', context)

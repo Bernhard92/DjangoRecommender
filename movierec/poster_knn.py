@@ -37,8 +37,10 @@ class PosterKNN(object):
         """
         movie_idx = np.where(self.y_train == movieId)
         dists = self.compute_distances(self.X_train[movie_idx])
-        
+
         most_similar_idxs = np.argsort(dists)
+        #don't recommend the input movie
+        most_similar_idxs = np.delete(most_similar_idxs, np.where(most_similar_idxs == movie_idx[0]))
 
         return self.y_train[most_similar_idxs[:k]]
 
@@ -60,4 +62,3 @@ class PosterKNN(object):
         for j in range(num_train):
             dists[j] = np.sqrt(np.sum((self.X_train[j]-X)**2))
         return dists
-
