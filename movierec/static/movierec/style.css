@@ -13,16 +13,7 @@ body {
    display: hidden;
 }
 
-.container {
-
-/*width: 1200;*/
-
-/* height: 95%; */
-
-margin: 16em auto;
-
-/* padding: 30px; */
-}
+.container {/*width: 1200;*//* height: 95%; *//* margin: 16em auto; *//* padding: 30px; */}
 
 h1 {
    margin: 51;
@@ -47,7 +38,7 @@ h1 {
    -webkit-transition: all 0.7s ease;
    transition: all 0.7s ease;
    /* padding: 15px; */
-   margin:auto; 
+   margin:auto;
    width: 100%;
    height: auto;
 }
@@ -57,31 +48,31 @@ h1 {
 }*/
 
 span.text-content {
-   
+
 color: white;
-   
+
 cursor: pointer;
-   
+
 display: table;
-   
+
 height: 350px;
-   
+
 left: 33px;
-   
+
 position: absolute;
-   
+
 top: 15px;
-   
+
 width: 280px;
-   
- opacity: 0; 
-   
+
+ opacity: 0;
+
 -webkit-transition: opacity 500ms;
-   
+
 -moz-transition: opacity 500ms;
-   
+
 -o-transition: opacity 500ms;
-   
+
 transition: opacity 500ms;
 }
 
@@ -122,6 +113,7 @@ span.text-content span {
 }
 a:link {
     text-decoration: none;
+    margin-left: 1em;
 }
 
 .banner{
@@ -161,14 +153,14 @@ header {
   padding-left:7%;
   background:#222;
   color:red;
-  height:40px;
+  height:100px;
   padding-top:10px;
-  padding-bottom: 10px; 
+  padding-bottom: 10px;
   font-weight: 700;
   font-size:2.5em;
 }
 a {
-  color:red;
+  color:  #ffcc00;
 }
 p{
   margin:0;
@@ -186,22 +178,22 @@ p{
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 
 /*
 #searchLabel{
-  color: #bbb; 
+  color: #bbb;
   font-family: helvetica;
 
 }
@@ -250,24 +242,25 @@ p{
 .wrap{
   width: 30%;
   position: absolute;
-  top: 16%;
-  left: 19%;
+  top: 38%;
+  left: 24%;
   transform: translate(-50%, -50%);
 }
 
 .input-advice{
-  color: #CCC; 
+  color: #CCC;
 }
 
 #searchForm {
   margin-block-end: inherit;
   display: inherit;
-  margin-top: inherit; 
+  margin-top: inherit;
 }
 
 .searchItem {
   position: relative;
-  top: 20%;
-  left: 1%;
+  top: 5%;
+  left: 44%;
   color: #CCC;
+  margin-left: 4em;
 }

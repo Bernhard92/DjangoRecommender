@@ -22,14 +22,18 @@ def index(request):
 	"""landing page"""
 	template = loader.get_template('movierec/index.html')
 
-	user_movie_title = request.GET.get('movie_title','Toy Story')
+	user_movie_title = request.GET.get('movie_title','')
 	# find movieId of movie with title user_movie_title
 	user_movie = movies[movies['title']==user_movie_title]
 	# looking up for title might return multiple result or no result
 	if isinstance(user_movie, pd.DataFrame):
 		if user_movie.empty:
-			user_movie = movies[movies['title']=='Toy Story']
-			user_movie_id = user_movie['id'].values[0]
+			context = {
+				'recommendation_dict': {},
+				'movie_title': user_movie_title,
+				'poster_path': 'static/movierec/images/dino.png'
+			}
+			return render(request, 'movierec/index.html', context)
 		else:
 			user_movie = user_movie.iloc[0]
 			user_movie_id = user_movie['id']
@@ -45,13 +49,13 @@ def index(request):
 
 	print(vote_movielist)
 	recommended_list_1 = tuple(poster_movielist)
-	recommended_list_2 = tuple(sr_movielist)
-	recommended_list_3 = tuple(nn_movielist)
-	recommended_list_4 = tuple(apriori_movielist)
+	recommended_list_2 = tuple(nn_movielist)
+	recommended_list_3 = tuple(apriori_movielist)
+	recommended_list_4 = tuple(sr_movielist)
 	recommended_list_5 = tuple(vote_movielist)
 
 	recommendation_lists = [recommended_list_1, recommended_list_2, recommended_list_3, recommended_list_4, recommended_list_5]
-	recommender_names = ['Poster', 'Simple', 'NN', 'Apriori', 'Vote']
+	recommender_names = ['Poster Similarity Recommender', 'Nearest Neighbour Recommender', 'Apriori Recommender', 'One Factor IMDB Rating Recommender', 'Ensemble Vote Recommender']
 	recommendation_dict = {}
 	for idx, rec in enumerate(recommendation_lists):
 		if rec:
