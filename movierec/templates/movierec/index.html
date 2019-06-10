@@ -28,13 +28,13 @@
 </div>
 
 <div class="container">
-{% for list in recommendation_lists %}
+{% for key, value in recommendation_dict.items %}
 
       <div id="row">
-         <h1 class="listTitle">Algorithm {{ forloop.counter }}</h1>
+         <h1 class="listTitle">{{ key }}</h1>
          <div id="carousel">
 
-            {% for movie in list %}
+            {% for movie in value %}
             <div class="image">
                <a href="?movie_title={{ movie.0 }}">
                   <img id="box1" src="http://image.tmdb.org/t/p/w342{{ movie.3 }}" width="280" height="350" />

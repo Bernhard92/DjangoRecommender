@@ -51,9 +51,15 @@ def index(request):
 	recommended_list_5 = tuple(vote_movielist)
 
 	recommendation_lists = [recommended_list_1, recommended_list_2, recommended_list_3, recommended_list_4, recommended_list_5]
+	recommender_names = ['Poster', 'Simple', 'NN', 'Apriori', 'Vote']
+	recommendation_dict = {}
+	for idx, rec in enumerate(recommendation_lists):
+		if rec:
+			print(rec)
+			recommendation_dict[recommender_names[idx]] = rec
 
 	context = {
-		'recommendation_lists': recommendation_lists,
+		'recommendation_dict': recommendation_dict,
 		'movie_title': user_movie_title,
 		'poster_path': user_movie_poster
 	}
