@@ -4,4 +4,6 @@
 DjangoRecommender/__pycache__/*
 movierec/__pycache__/*
 movierec/migrations/__pycache__/*
-movierec/data/extracted_posters_small
+movierec/data/*
+
+movierec/data/the-movies-dataset/support_small_multiprocess_vectorized.csv
