@@ -4,10 +4,10 @@ from django.shortcuts import render
 from django.views import generic
 from django.template import loader
 from .models import User, Movie, Genre, Rating
-from . import poster_recommender, movies, simple_recommender, nn_recommender, apriori_recommender, vote_recommender
+from . import poster_recommender, movies, simple_recommender, nn_recommender, vote_recommender, ibcf_recommender, apriori_recommender
 
 def get_movielist_from_rec(recommender, user_movie_id):
-	similar = recommender.recommend(user_movie_id,10)
+	similar = recommender.recommend(user_movie_id,k=10)
 	similar_rows = pd.DataFrame()
 	for movie_id in similar:
 		similar_rows = similar_rows.append(movies[movies['id'] == movie_id])
@@ -45,17 +45,22 @@ def index(request):
 	sr_movielist = get_movielist_from_rec(simple_recommender, user_movie_id)
 	nn_movielist = get_movielist_from_rec(nn_recommender, user_movie_id)
 	apriori_movielist = get_movielist_from_rec(apriori_recommender, user_movie_id)
+	ibcf_movielist = get_movielist_from_rec(ibcf_recommender, user_movie_id)
 	vote_movielist = get_movielist_from_rec(vote_recommender, user_movie_id)
+
 
 	print(vote_movielist)
 	recommended_list_1 = tuple(poster_movielist)
 	recommended_list_2 = tuple(nn_movielist)
 	recommended_list_3 = tuple(apriori_movielist)
 	recommended_list_4 = tuple(sr_movielist)
-	recommended_list_5 = tuple(vote_movielist)
+	recommended_list_5 = tuple(ibcf_movielist)
+	recommended_list_6 = tuple(vote_movielist)
 
-	recommendation_lists = [recommended_list_1, recommended_list_2, recommended_list_3, recommended_list_4, recommended_list_5]
-	recommender_names = ['Poster Similarity Recommender', 'Nearest Neighbour Recommender', 'Apriori Recommender', 'One Factor IMDB Rating Recommender', 'Ensemble Vote Recommender']
+	recommendation_lists = [recommended_list_1, recommended_list_2, recommended_list_3, 
+		recommended_list_4,recommended_list_5, recommended_list_6]
+	recommender_names = ['Poster Similarity Recommender', 'Nearest Neighbour Recommender', 'Apriori Recommender', 
+		'One Factor IMDB Rating Recommender', 'Item Based Collaborative Filtering Recommender', 'Ensemble Vote Recommender']
 	recommendation_dict = {}
 	for idx, rec in enumerate(recommendation_lists):
 		if rec:

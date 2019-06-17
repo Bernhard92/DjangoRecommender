@@ -3,11 +3,13 @@ import os
 import pandas as pd
 from skimage.transform import resize
 from skimage import io
-from movierec.poster_knn import PosterKNN
-from movierec.SimpleRecommender import SimpleRecommender
-from movierec.NNRecommender import NNRecommender
-from movierec.AprioriRecommender import AprioriRecommender
-from movierec.VoteRecommender import VoteRecommender
+from movierec.recommender.poster_knn import PosterKNN
+from movierec.recommender.SimpleRecommender import SimpleRecommender
+from movierec.recommender.NNRecommender import NNRecommender
+from movierec.recommender.AprioriRecommender import AprioriRecommender
+from movierec.recommender.VoteRecommender import VoteRecommender
+from movierec.recommender.ItemBasedCF import ItemBasedCollaborativeFiltering
+
 
 # initialize poster recommender
 print('starting to load poster data for recommender')
@@ -23,6 +25,7 @@ print('initialize movie table')
 data_path = os.path.join(os.getcwd(), 'movierec/data/the-movies-dataset/')
 movies = pd.read_csv(os.path.join(data_path, 'movies_preprocessed.csv'))
 movies = movies.drop_duplicates(subset='id')
+ratings = pd.read_csv(os.path.join(data_path, 'ratings.csv'))
 
 #initialize SimpleRecommender
 print('initialize simple recommender')
@@ -39,6 +42,12 @@ distances = pd.read_csv(os.path.join(data_path, 'support_small_multiprocess_vect
 print('initialize apriori recommender')
 apriori_recommender = AprioriRecommender(movies.copy(), distances)
 
+# initialize ItemBasedCollaborativeFiltering
+print('initialize item based collaborative filtering')
+ibcf_recommender = ItemBasedCollaborativeFiltering(ratings, movies.copy(), k=20)
+
 # initialize VoteRecommender
 print('initialize vote recommender')
-vote_recommender = VoteRecommender([poster_recommender,simple_recommender,nn_recommender_vote,apriori_recommender])
+vote_recommender = VoteRecommender([poster_recommender,simple_recommender,nn_recommender_vote, apriori_recommender, ibcf_recommender]) 
+
+

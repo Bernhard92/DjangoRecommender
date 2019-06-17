@@ -160,7 +160,10 @@ header {
   font-size:2.5em;
 }
 a {
-  color:  #ffcc00;
+  /*font-weight: 300;*/
+  background: -webkit-linear-gradient(#eee, #ffcc00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 p{
   margin:0;
